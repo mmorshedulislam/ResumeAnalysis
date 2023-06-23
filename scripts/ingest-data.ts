@@ -9,7 +9,7 @@ import { DirectoryLoader } from 'langchain/document_loaders/fs/directory';
 /* Name of directory to retrieve your files from 
    Make sure to add your PDF files inside the 'docs' folder
 */
-const filePath = 'docs/Resume of Md Morshedul Islam - SJ Innovation - Jr. Back-End Developer .pdf';
+const filePath = 'docs/Resume of Md Morshedul Islam.pdf';
 
 export const run = async () => {
   try {
