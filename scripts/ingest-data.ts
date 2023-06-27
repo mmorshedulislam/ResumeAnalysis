@@ -6,24 +6,19 @@ import { PDFLoader } from 'langchain/document_loaders/fs/pdf';
 import { PINECONE_INDEX_NAME, PINECONE_NAME_SPACE } from '@/config/pinecone';
 import { DirectoryLoader } from 'langchain/document_loaders/fs/directory';
 
-/* Name of directory to retrieve your files from 
-   Make sure to add your PDF files inside the 'docs' folder
+/* 
+  Name of directory to retrieve your files from 
+  Make sure to add your PDF files inside the 'docs' folder
 */
 const filePath = 'docs/Resume of Md Morshedul Islam.pdf';
 
-export const run = async () => {
+export const ingestData = async () => {
   try {
     // /*load raw docs from the all files in the directory */
-    // const directoryLoader = new DirectoryLoader(filePath, {
-    //   '.pdf': (path) => new PDFLoader(path),
-    // });
-
     const loader = new PDFLoader(filePath)
 
     // const loader = new PDFLoader(filePath);
     const rawDocs = await loader.load();
-
-    // console.log(rawDocs);
 
     /* Split text into chunks */
     const textSplitter = new RecursiveCharacterTextSplitter({
@@ -45,6 +40,9 @@ export const run = async () => {
       namespace: PINECONE_NAME_SPACE,
       textKey: 'text',
     });
+
+    console.log('ingestion complete');
+
   } catch (error) {
     console.log('error', error);
     throw new Error('Failed to ingest your data');
@@ -52,6 +50,5 @@ export const run = async () => {
 };
 
 (async () => {
-  await run();
-  console.log('ingestion complete');
+  await ingestData();
 })();
