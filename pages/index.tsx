@@ -14,7 +14,7 @@ import {
 } from '@/components/ui/accordion';
 
 export default function Home() {
-  const [query, setQuery] = useState<string>('Provide some questions related to the skills of resume for HR during the ask question from the candidate and provide a task idea.');
+  const [query, setQuery] = useState<string>('Provide some questions related to the skills of the Resume for HR during the ask question from the candidate and provide a task idea.');
   const [loading, setLoading] = useState<boolean>(false);
   const [error, setError] = useState<string | null>(null);
   const [messageState, setMessageState] = useState<{
@@ -80,7 +80,6 @@ export default function Home() {
         }),
       });
       const data = await response.json();
-      console.log('data', data);
 
       if (data.error) {
         setError(data.error);
@@ -98,7 +97,6 @@ export default function Home() {
           history: [...state.history, [question, data.text]],
         }));
       }
-      console.log('messageState', messageState);
 
       setLoading(false);
 
