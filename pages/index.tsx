@@ -14,7 +14,7 @@ import {
 } from '@/components/ui/accordion';
 
 export default function Home() {
-  const [query, setQuery] = useState<string>('');
+  const [query, setQuery] = useState<string>('Provide some questions related to the skills of resume for HR during the ask question from the candidate and provide a task idea.');
   const [loading, setLoading] = useState<boolean>(false);
   const [error, setError] = useState<string | null>(null);
   const [messageState, setMessageState] = useState<{
@@ -224,7 +224,7 @@ export default function Home() {
                     placeholder={
                       loading
                         ? 'Waiting for response...'
-                        : 'What is this legal case about?'
+                        : 'What is the name of Resume owner?'
                     }
                     value={query}
                     onChange={(e) => setQuery(e.target.value)}
